@@ -22,7 +22,7 @@ initializeApp(firebaseConfig)
 
 const db = getFirestore()
 const auth = getAuth()
-const colRef = collection(db,'books')
+const colRef = collection(db,'photos')
 
 const q = query(colRef,orderBy('dateAdded'))
 
@@ -31,7 +31,8 @@ onSnapshot(q, (snapshot) => {
         snapshot.docs.forEach((doc)=>{
             books.push({...doc.data(),id:doc.id})
         })
-    console.log(books);
+    console.log();
+    document.querySelector('.photo').innerHTML="<img width='500px' height='500px'src='"+books[0].url+"' />"
 })
 
 // adding docs
